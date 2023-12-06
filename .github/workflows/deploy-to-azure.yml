@@ -20,6 +20,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
+        working-directory: Final
         run: npm install
 
       - name: Build
