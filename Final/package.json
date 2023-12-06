@@ -2,7 +2,7 @@
     "name": "mock-restaurant-ordering",
     "version": "1.0.0",
     "description": "A mock restaurant ordering website",
-    "main": "index.js",
+    "main": "script.js",
     "scripts": {
       "start": "node script.js",
       "build": "echo 'Add your build script here'"
