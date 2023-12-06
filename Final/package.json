@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
       "start": "node script.js"
+      "build": "echo 'Add your build script here'"
     },
     "keywords": [
       "restaurant",
