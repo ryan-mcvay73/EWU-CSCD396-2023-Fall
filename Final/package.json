@@ -1,0 +1,24 @@
+{
+    "name": "mock-restaurant-ordering",
+    "version": "1.0.0",
+    "description": "A mock restaurant ordering website",
+    "main": "index.js",
+    "scripts": {
+      "start": "node script.js"
+    },
+    "keywords": [
+      "restaurant",
+      "ordering",
+      "mock",
+      "website"
+    ],
+    "author": "Your Name",
+    "license": "MIT", 
+    "dependencies": {
+      
+    },
+    "devDependencies": {
+      
+    }
+  }
+  
