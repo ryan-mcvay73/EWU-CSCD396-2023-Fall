@@ -9,6 +9,11 @@ on:
       - Final
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: final-presentation-396  
+  AZURE_WEBAPP_PACKAGE_PATH: 'EWU-CSCD396-2023-Fall/Final/'   
+  NODE_VERSION: '20.x' 
+
 jobs:
   build:
     runs-on: ubuntu-latest
