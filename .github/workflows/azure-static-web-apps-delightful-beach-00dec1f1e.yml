@@ -19,6 +19,9 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.ASSIGNMENT1_CREDENTIALS }}
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
