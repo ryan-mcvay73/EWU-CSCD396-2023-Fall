@@ -17,7 +17,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": ["https://delightful-beach-00dec1f1e.4.azurestaticapps.net/"],
         "allow-credentials": false
       },
       "authentication": {
