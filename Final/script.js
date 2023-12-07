@@ -1,3 +1,5 @@
+const readline = require('readline');
+
 // Dummy menu data
 const menuItems = [
     { id: 1, name: "Burger", price: 10 },
@@ -6,43 +8,60 @@ const menuItems = [
 ];
 
 // Initialize menu options
-document.addEventListener("DOMContentLoaded", function () {
-    const menuList = document.getElementById("item");
-
+function initializeMenu() {
+    console.log("Menu:");
     menuItems.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item.id;
-        option.text = `${item.name} - $${item.price}`;
-        menuList.appendChild(option);
+        console.log(`${item.id}. ${item.name} - $${item.price}`);
     });
-});
+}
 
-function calculateTotal() {
-    const orderItems = document.querySelectorAll("#order-list li");
+// Function to calculate total cost
+function calculateTotal(orderItems) {
     let total = 0;
 
     orderItems.forEach(item => {
         // Extracting the price from the item text
-        const price = parseFloat(item.innerText.match(/\$([\d.]+)/)[1]);
+        const price = parseFloat(item.match(/\$([\d.]+)/)[1]);
         total += price;
     });
 
     // Display the total cost
-    document.getElementById("total-cost").innerText = `Total Cost: $${total.toFixed(2)}`;
+    console.log(`Total Cost: $${total.toFixed(2)}`);
 }
 
 // Function to add selected item to the order list
-function addToOrder() {
-    const selectedItem = menuItems.find(item => item.id === parseInt(document.getElementById("item").value));
-    const quantity = parseInt(document.getElementById("quantity").value);
-
-    if (selectedItem) {
-        const orderItem = document.createElement("li");
-        orderItem.innerText = `${selectedItem.name} x${quantity} - $${selectedItem.price * quantity}`;
-        document.getElementById("order-list").appendChild(orderItem);
-        calculateTotal();
-    }
-
-    // Optional: Clear the form after adding an item to the order
-    document.getElementById("order-form").reset();
+function addToOrder(selectedItem, quantity, orderList) {
+    const orderItem = `${selectedItem.name} x${quantity} - $${selectedItem.price * quantity}`;
+    orderList.push(orderItem);
+    console.log(`Added to order: ${orderItem}`);
 }
+
+// Main function
+function main() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    const orderList = [];
+
+    rl.question("Enter the item number to add to the order: ", function (itemId) {
+        const selectedItem = menuItems.find(item => item.id === parseInt(itemId));
+
+        if (selectedItem) {
+            rl.question("Enter the quantity: ", function (quantity) {
+                addToOrder(selectedItem, parseInt(quantity), orderList);
+                calculateTotal(orderList);
+                rl.close();
+            });
+        } else {
+            console.log("Invalid item number. Please select a valid item.");
+            rl.close();
+        }
+    });
+
+    initializeMenu();
+}
+
+// Run the main function
+main();
